@@ -2,6 +2,7 @@ package edu.erciyes.javafex;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -19,13 +20,16 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Pane root=new Pane();
+        Parent root=new Pane();
         Scene scene = new Scene(root, 1000, 800);
+        Araba a1=new Araba();
+        Kamyon k1=new Kamyon();
+        Scooter s1=new Scooter();
+        Bus b1=new Bus();
 
-        Button btn1=new Button();
-        btn1.setText("Kuzey İçin yeşil ışık yak");
-        /*
-        stage.setTitle("Hello!");
+
+
+       /* stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();*/
 
@@ -42,7 +46,13 @@ public class HelloApplication extends Application {
         eastLights.setLayoutX(775);  eastLights.setLayoutY(375);
         westLights.setLayoutX(175);   westLights.setLayoutY(375);
 
-        root.getChildren().addAll(northLights, eastLights, southLights, westLights,btn1);
+
+        ((Pane) root).getChildren().addAll(northLights, eastLights, southLights, westLights);
+        a1.ciz((Pane) root, 500, 300, "north");
+        k1.ciz((Pane) root, 500, 300, "east");
+        s1.ciz((Pane) root, 500, 300, "south");
+        b1.ciz((Pane) root, 500, 300, "west");
+
         stage.setTitle("Trafik Işıkları");
         stage.setScene(scene);
         stage.show();
