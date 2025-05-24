@@ -4,7 +4,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.application.Application;
 
 public class Araba implements Vehicle{
     final private String name = "Araba";
@@ -52,6 +51,5 @@ public class Araba implements Vehicle{
         imageView.setLayoutX(x);
         imageView.setLayoutY(y);
 
-        root.getChildren().addAll(imageView);
     }
 }
