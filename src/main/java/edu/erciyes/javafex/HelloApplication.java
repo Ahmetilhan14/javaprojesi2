@@ -20,18 +20,15 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Parent root=new Pane();
-        Scene scene = new Scene(root, 1000, 800);
-        Araba a1=new Araba();
-        Kamyon k1=new Kamyon();
-        Scooter s1=new Scooter();
-        Bus b1=new Bus();
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root, 800, 600);
 
 
 
        /* stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
 
 
         // Her yön için oluşturulacak nesnelerin tanımlanması
@@ -47,11 +44,9 @@ public class HelloApplication extends Application {
         westLights.setLayoutX(175);   westLights.setLayoutY(375);
 
 
-        ((Pane) root).getChildren().addAll(northLights, eastLights, southLights, westLights);
-        a1.ciz((Pane) root, 500, 300, "north");
-        k1.ciz((Pane) root, 500, 300, "east");
-        s1.ciz((Pane) root, 500, 300, "south");
-        b1.ciz((Pane) root, 500, 300, "west");
+
+
+        ((Pane) root).getChildren().addAll(northLights, eastLights, southLights, westLights);*/
 
         stage.setTitle("Trafik Işıkları");
         stage.setScene(scene);
