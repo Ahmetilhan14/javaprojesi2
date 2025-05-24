@@ -1,0 +1,69 @@
+package edu.erciyes.javafex;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.geometry.Pos;
+
+
+
+
+public class TrafficLightsDemo extends StackPane {
+   // Kırmızı sarı ve yeşil ışıklarla arka plandaki çerçevenin tanımlanması
+    private Circle kirmizi,yesil,sari;
+    private Rectangle arkaPlan;
+
+
+    // Trafik Işıklarının tanımlandığı özelliklerinin girildiği contructor
+
+    public TrafficLightsDemo() {
+        kirmizi = new Circle(10,Color.RED);
+        yesil = new Circle(10,Color.GREEN);
+        sari = new Circle(10,Color.YELLOW);
+
+        VBox isiklar = new VBox(5,kirmizi,sari,yesil);
+        isiklar.setAlignment(Pos.CENTER);
+        arkaPlan = new Rectangle(40,90);
+        arkaPlan.setFill(Color.TRANSPARENT);
+        arkaPlan.setStroke(Color.ORANGE);
+
+        this.getChildren().addAll(isiklar,arkaPlan);
+    }
+
+
+    // Kırmızı Işığı aktif eden fonksiyon
+    public void turnOnRed(String yon){
+        kirmizi.setFill(Color.RED);
+        yesil.setFill(Color.GRAY);
+        sari.setFill(Color.GRAY);
+    }
+    // Sarı Işığı aktif eden fonksiyon
+    public void turnOYellow(String yon){
+        kirmizi.setFill(Color.GRAY);
+        yesil.setFill(Color.GRAY);
+        sari.setFill(Color.YELLOW);
+    }
+    //Yeşil ışığı aktif eden fonksiyon
+    public void turnOnGreen(String yon){
+        kirmizi.setFill(Color.GRAY);
+        yesil.setFill(Color.GREEN);
+        sari.setFill(Color.GRAY);
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
