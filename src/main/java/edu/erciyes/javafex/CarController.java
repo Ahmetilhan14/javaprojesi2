@@ -1,12 +1,17 @@
 package edu.erciyes.javafex;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,10 @@ public class CarController {
     @FXML private Pane southPane;
     @FXML private Pane eastPane;
     @FXML private Pane westPane;
+    private TrafficLightsDemo northLights, southLights, eastLights, westLights;
+    private Group lightsGroup;
+    private Group carsGroup;
+
 
     private boolean isUpdating = false;
     private boolean isUpdating2 = false;
@@ -46,7 +55,85 @@ public class CarController {
         SouthVehicleCount.setValue(3);
 
         attachComboBoxListeners();
+
+        northLights = new TrafficLightsDemo();
+        northPane.getChildren().add(northLights);
+        southLights = new TrafficLightsDemo();
+        southPane.getChildren().add(southLights);
+        eastLights = new TrafficLightsDemo();
+        eastPane.getChildren().add(eastLights);
+        westLights = new TrafficLightsDemo();
+        westPane.getChildren().add(westLights);
+
+        startTrafficLoop();
     }
+    private void startTrafficLoop() {
+        Timeline timeline = new Timeline();
+
+        // Başta hepsi kırmızı (0.saniye)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0), e -> {
+            allRed();
+        }));
+
+        // Kuzey sarı (2. saniye)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(2), e -> {
+            northLights.turnOnYellow();
+        }));
+
+        // Kuzey yeşil (3. saniye)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
+            northLights.turnOnGreen();
+        }));
+
+        // Kuzey tekrar kırmızı (13. saniye), doğu sarı
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(13), e -> {
+            northLights.turnOnRed();
+            eastLights.turnOnYellow();
+        }));
+
+        // Doğu yeşil (14. saniye)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(14), e -> {
+            eastLights.turnOnGreen();
+        }));
+
+        // Doğu tekrar kırmızı (24. saniye), güney sarı
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(24), e -> {
+            eastLights.turnOnRed();
+            southLights.turnOnYellow();
+        }));
+
+        // Güney yeşil (25. saniye)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(25), e -> {
+            southLights.turnOnGreen();
+        }));
+
+        // Güney kırmızı, batı sarı (35. saniye)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(35), e -> {
+            southLights.turnOnRed();
+            westLights.turnOnYellow();
+        }));
+
+        // Batı yeşil (36. saniye)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(36), e -> {
+            westLights.turnOnGreen();
+        }));
+
+        // Döngüyü tekrar başlat (46. saniye)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(46), e -> {
+            westLights.turnOnRed();
+            allRed();
+        }));
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+    private void allRed() {
+        northLights.turnOnRed();
+        southLights.turnOnRed();
+        eastLights.turnOnRed();
+        westLights.turnOnRed();
+    }
+
 
     private void attachComboBoxListeners() {
         NorthVehicleCount.setOnAction(e -> { if (!isUpdating2) changeHandler(); });
@@ -258,13 +345,13 @@ public class CarController {
         int durum=sayac%3;
         switch (durum){
             case 1:
-                trafficlight.turnOnRed(yon);
+                trafficlight.turnOnRed();
                 break;
             case 2:
-                trafficlight.turnOYellow(yon);
+                trafficlight.turnOnYellow();
                 break;
             case 3:
-                trafficlight.turnOnGreen(yon);
+                trafficlight.turnOnGreen();
                 break;
         }
     }

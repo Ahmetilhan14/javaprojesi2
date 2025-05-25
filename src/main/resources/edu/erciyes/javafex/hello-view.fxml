@@ -82,9 +82,9 @@
                 <VBox alignment="TOP_LEFT" prefWidth="300" prefHeight="190">
                     <HBox alignment="CENTER" maxWidth="80" prefHeight="40" spacing="5"
                           style="-fx-border-color: orange; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 2">
-                        <Circle fx:id="east_red" radius="10" fill="GRAY"/>
+                        <Circle fx:id="east_red" radius="10" fill="RED"/>
                         <Circle fx:id="east_yellow" radius="10" fill="GRAY"/>
-                        <Circle fx:id="east_green" radius="10" fill="GREEN"/>
+                        <Circle fx:id="east_green" radius="10" fill="GRAY"/>
                     </HBox>
                     <HBox>
                         <Pane fx:id="eastPane" prefHeight="100" prefWidth="300"

@@ -56,13 +56,13 @@ public class HelloController {
         int durum=sayac%3;
         switch (durum){
             case 1:
-                trafficlight.turnOnRed(yon);
+                trafficlight.turnOnRed();
                 break;
             case 2:
-                trafficlight.turnOYellow(yon);
+                trafficlight.turnOnYellow();
                 break;
             case 3:
-                trafficlight.turnOnGreen(yon);
+                trafficlight.turnOnGreen();
                 break;
         }
     }

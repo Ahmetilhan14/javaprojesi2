@@ -38,32 +38,21 @@ public class TrafficLightsDemo extends StackPane {
 
 
     // Kırmızı Işığı aktif eden fonksiyon
-    public void turnOnRed(String yon){
+    public void turnOnRed(){
         kirmizi.setFill(Color.RED);
         yesil.setFill(Color.GRAY);
         sari.setFill(Color.GRAY);
     }
     // Sarı Işığı aktif eden fonksiyon
-    public void turnOYellow(String yon){
+    public void turnOnYellow(){
         kirmizi.setFill(Color.GRAY);
         yesil.setFill(Color.GRAY);
         sari.setFill(Color.YELLOW);
     }
     //Yeşil ışığı aktif eden fonksiyon
-    public void turnOnGreen(String yon){
+    public void turnOnGreen(){
         kirmizi.setFill(Color.GRAY);
         yesil.setFill(Color.GREEN);
         sari.setFill(Color.GRAY);
     }
-
-
-
-
-
-
-
-
-
-
-
 }
