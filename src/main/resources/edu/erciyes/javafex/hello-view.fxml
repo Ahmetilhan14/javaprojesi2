@@ -11,7 +11,7 @@
 
     <!-- Üst kısım: Kontroller -->
     <top>
-        <HBox spacing="20" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+        <HBox spacing="20" alignment="TOP_LEFT" BorderPane.alignment="CENTER">
             <VBox spacing="5" alignment="CENTER">
                 <Label text="Doğu"/>
                 <ComboBox fx:id="EastVehicleCount" prefWidth="100"/>
@@ -39,78 +39,107 @@
             <VBox spacing="5" alignment="CENTER">
                 <Label fx:id="errorMessageLabel" text="" textFill="red"/>
             </VBox>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <VBox>
+                <Button onMouseClicked="#start" text="Başlat"/>
+                <Button onMouseClicked="#durdur" text="Dur!"/>
+                <Button onMouseClicked="#devamet" text="Dur!"/>
+
+            </VBox>
         </HBox>
     </top>
 
-
     <!-- Alt kısım: Paneller -->
-    <bottom>
-        <VBox spacing="10">
-            <HBox alignment="BOTTOM_CENTER" prefWidth="400" spacing="5">
-                <HBox prefWidth="210" prefHeight="300" alignment="BOTTOM_LEFT">
-                    <VBox alignment="BOTTOM_CENTER" prefWidth="40" maxHeight="80" spacing="5"
-                          style="-fx-border-color: orange; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 2">
-                        <Circle fx:id="north_red" radius="10" fill="RED"/>
-                        <Circle fx:id="north_yellow" radius="10" fill="GRAY"/>
-                        <Circle fx:id="north_green" radius="10" fill="GRAY"/>
-                    </VBox>
-                    <VBox>
-                        <Pane fx:id="northPane" prefHeight="300" prefWidth="100"
-                              style="-fx-background-color: red;"/>
-                    </VBox>
+    <center>
+        <VBox spacing="10" style="-fx-background-color: blue">
+            <!-- Kuzey -->
+            <HBox alignment="BOTTOM_CENTER" spacing="5">
+                <HBox prefWidth="220" maxHeight="250" alignment="BOTTOM_LEFT">
+                    <HBox style="-fx-border-color: gray; -fx-background-color: white">
+                        <Pane fx:id="northPane2" prefHeight="250" prefWidth="100">
+                            <Line startX="50" startY="0" endX="50" endY="250"
+                                  stroke="gray" strokeWidth="2"
+                                  strokeDashArray="10,10"/>
+                        </Pane>
+                        <Line startX="100" startY="0" endX="100" endY="250"/>
+                        <Pane fx:id="northPane" prefHeight="200" prefWidth="100">
+                            <Pane fx:id="northhPaneLeft" prefHeight="250" prefWidth="50"/>
+                            <Line startX="50" startY="0" endX="50" endY="250"
+                                  stroke="gray" strokeWidth="2"
+                                  strokeDashArray="10,10"/>
+                            <Pane fx:id="northPaneRight" prefHeight="250" prefWidth="50"/>
+                        </Pane>
+                    </HBox>
                 </HBox>
             </HBox>
 
-
+            <!-- Orta: Batı ve Doğu -->
             <HBox spacing="20" alignment="CENTER">
-                <VBox prefHeight="190" prefWidth="300" alignment="BOTTOM_RIGHT">
-                    <HBox>
-                        <Pane fx:id="westPane" prefHeight="100" prefWidth="300"
-                              style="-fx-border-color: black; -fx-background-color: orange;"/>
-                    </HBox>
-                    <HBox alignment="CENTER" maxWidth="80" prefHeight="40" spacing="5"
-                          style="-fx-border-color: orange; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 2">
-                        <Circle fx:id="west_red" radius="10" fill="RED"/>
-                        <Circle fx:id="west_yellow" radius="10" fill="GRAY"/>
-                        <Circle fx:id="west_green" radius="10" fill="GRAY"/>
-                    </HBox>
-
+                <!-- Batı Yönü-->
+                <VBox prefHeight="210" prefWidth="300" alignment="BOTTOM_RIGHT">
+                    <VBox style="-fx-background-color: white; -fx-border-width:  2;  -fx-border: gray;">
+                        <Pane fx:id="westPane2" prefHeight="100" prefWidth="300">
+                            <Line startX="0" startY="50" endX="300" endY="50"
+                                  stroke="gray" strokeWidth="2"
+                                  strokeDashArray="10,10"/>
+                        </Pane>
+                        <Line startX="0" startY="0" endX="300" endY="0" strokeWidth="2"/>
+                        <Pane fx:id="westPane" prefHeight="100" prefWidth="300">
+                            <Pane fx:id="westPaneLeft" prefHeight="50" prefWidth="300"/>
+                            <Line startX="0" startY="50" endX="300" endY="50"
+                                  stroke="gray" strokeWidth="2"
+                                  strokeDashArray="10,10"/>
+                            <Pane fx:id="westPaneRight" prefWidth="300" prefHeight="50"/>
+                        </Pane>
+                    </VBox>
                 </VBox>
 
-                <Pane prefHeight="50" prefWidth="200"/>
+                <Pane prefHeight="110" prefWidth="250"/>
 
-                <VBox alignment="TOP_LEFT" prefWidth="300" prefHeight="190">
-                    <HBox alignment="CENTER" maxWidth="80" prefHeight="40" spacing="5"
-                          style="-fx-border-color: orange; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 2">
-                        <Circle fx:id="east_red" radius="10" fill="RED"/>
-                        <Circle fx:id="east_yellow" radius="10" fill="GRAY"/>
-                        <Circle fx:id="east_green" radius="10" fill="GRAY"/>
-                    </HBox>
-                    <HBox>
-                        <Pane fx:id="eastPane" prefHeight="100" prefWidth="300"
-                              style="-fx-border-color: black; -fx-background-color: green;"/>
-                    </HBox>
+                <!--Doğu Yönü-->
+                <VBox alignment="TOP_LEFT" prefWidth="300" prefHeight="210">
+                    <VBox style="-fx-background-color: white; -fx-border-width: 2;  -fx-border: gray;">
+                        <Pane fx:id="eastPane2" prefHeight="100" prefWidth="300">
+                            <Line startX="0" startY="50" endX="300" endY="50"
+                                  stroke="gray" strokeWidth="2"
+                                  strokeDashArray="10,10"/>
+                        </Pane>
+                        <Line startX="0" startY="0" endX="300" endY="0" strokeWidth="2"/>
+                        <Pane fx:id="eastPane" prefHeight="100" prefWidth="300">
+                            <Pane fx:id="eastPaneLeft" prefHeight="50" prefWidth="300"/>
+                            <Line startX="0" startY="50" endX="300" endY="50"
+                                  stroke="gray" strokeWidth="2"
+                                  strokeDashArray="10,10"/>
+                            <Pane fx:id="eastPaneRight" prefWidth="300" prefHeight="50"/>
+                        </Pane>
+                    </VBox>
                 </VBox>
-
             </HBox>
 
-
-            <HBox alignment="TOP_CENTER">
-                <VBox>
-                <Pane fx:id="southPane" prefHeight="300" prefWidth="100"
-                      style="-fx-border-color: black; -fx-background-color: yellow;"/>
-                </VBox>
-                <VBox alignment="BOTTOM_RIGHT" spacing="5" style="-fx-border-color: orange; -fx-border-width: 1; -fx-border-radius: 5; -fx-max-height: 3; -fx-padding: 2">
-                    <Circle fx:id="south_red" radius="10" fill="RED"/>
-                    <Circle fx:id="south_yellow" radius="10" fill="GRAY"/>
-                    <Circle fx:id="south_green" radius="10" fill="GRAY"/>
-                </VBox>
+            <!-- Güney -->
+            <HBox alignment="BOTTOM_CENTER" prefWidth="400" spacing="5">
+                <HBox prefWidth="220" maxHeight="250" alignment="BOTTOM_RIGHT">
+                    <HBox style="-fx-border-color: gray; -fx-background-color: white">
+                        <Pane fx:id="southPane2" prefHeight="250" prefWidth="100">
+                            <Line startX="50" startY="0" endX="50" endY="250"
+                                  stroke="gray" strokeWidth="2"
+                                  strokeDashArray="10,10"/>
+                        </Pane>
+                        <Line startX="100" startY="0" endX="100" endY="250"/>
+                        <Pane fx:id="southPane" prefHeight="250" prefWidth="100">
+                            <Pane fx:id="southPaneLeft" prefHeight="250" prefWidth="50"/>
+                            <Line startX="50" startY="0" endX="50" endY="250"
+                                  stroke="gray" strokeWidth="2"
+                                  strokeDashArray="10,10"/>
+                            <Pane fx:id="southPaneRight" prefHeight="250" prefWidth="50"/>
+                        </Pane>
+                    </HBox>
+                </HBox>
             </HBox>
         </VBox>
-    </bottom>
+    </center>
 
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
-
 </BorderPane>

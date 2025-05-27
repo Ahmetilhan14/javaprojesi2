@@ -29,6 +29,9 @@ public class CarController {
     @FXML private Pane southPane;
     @FXML private Pane eastPane;
     @FXML private Pane westPane;
+
+
+    private VehicleMove move=new VehicleMove();
     private TrafficLightsDemo northLights, southLights, eastLights, westLights;
     private Group lightsGroup;
     private Group carsGroup;
@@ -143,7 +146,7 @@ public class CarController {
     }
 
     public void setItems(ComboBox<Integer> comboBox, int maxValue) {
-        comboBox.getItems().clear();
+       // comboBox.getItems().clear();
         for (int i = 0; i <= maxValue; i++) {
             comboBox.getItems().add(i);
         }
@@ -173,7 +176,7 @@ public class CarController {
 
     private void updateComboBoxWithoutTrigger(ComboBox<Integer> comboBox, int currentValue, int maxAllowed) {
         comboBox.setOnAction(null);
-        comboBox.getItems().clear();
+     //   comboBox.getItems().clear();
 
         int limit = Math.min(maxAllowed, 20);
         for (int i = 0; i <= limit; i++) {
@@ -193,7 +196,7 @@ public class CarController {
 
     @FXML
     public void secHandler(MouseEvent mouseEvent) {
-        clearPanesAndLists();
+       // clearPanesAndLists();
 
         selectVehicle(getComboValue(NorthVehicleCount), "north");
         selectVehicle(getComboValue(SouthVehicleCount), "south");
@@ -255,7 +258,9 @@ public class CarController {
                     spacing += (rnd == 0) ? 25 : 45;
                     break;
             }
-
+            arac.setDirection(direction);
+            arac.setMovement("left");
+            arac.setPosition(x, y);
             arac.ciz(pane, x, y, direction);
         }
     }
@@ -282,7 +287,7 @@ public class CarController {
 
     @FXML
     public void rndHandler(MouseEvent mouseEvent) {
-        clearPanesAndLists();
+     //   clearPanesAndLists();
 
         Random rand = new Random();
         int totalVehicles = rand.nextInt(21);
@@ -299,62 +304,25 @@ public class CarController {
 
         System.out.println("bitti");
     }
-    @FXML
-    private Button btnKuzey,btnGuney,btnDogu,btnBati;
-    private int sayacK=0,sayacG=9,sayacD=0,sayacB=0;
-    private final TrafficLightsDemo trafficlight=new TrafficLightsDemo();
-    @FXML
-    public void initialize1(){
-        // Kuzey için ışıklar
-        btnKuzey.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                sayacK++;
-                yonuIslet("Kuzey",sayacK);
-            }
-        });
 
-        //Güney için ışıklar
-
-        btnGuney.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                sayacG++;
-                yonuIslet("Guney",sayacG);
-            }
-        });
-        // Doğu için yakılan ışıklar
-        btnDogu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                sayacD++;
-                yonuIslet("Dogu",sayacD);
-            }
-        });
-        //Batı için ışıklar
-        btnBati.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                sayacB++;
-                yonuIslet("Bati",sayacB);
-            }
-        });
-
+    public void start(MouseEvent mouseEvent) {
+        move.forward(araclarNorth);
+        move.forward(araclarEast);
+        move.forward(araclarWest);
+        move.forward(araclarSouth);
     }
-    private void yonuIslet(String yon,int sayac){
-        int durum=sayac%3;
-        switch (durum){
-            case 1:
-                trafficlight.turnOnRed();
-                break;
-            case 2:
-                trafficlight.turnOnYellow();
-                break;
-            case 3:
-                trafficlight.turnOnGreen();
-                break;
-        }
+
+    @FXML
+    public void durdur(MouseEvent mouseEvent) {
+        move.durdur(); // Animasyonları durdur
     }
+
+    @FXML
+    public void devamet(MouseEvent mouseEvent) {
+        move.devamEt(); // Kaldığı yerden devam
+    }
+
+
 
 
 }

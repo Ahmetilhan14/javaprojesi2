@@ -29,6 +29,7 @@ public class TrafficLightsDemo extends StackPane {
 
         VBox isiklar = new VBox(5,kirmizi,sari,yesil);
         isiklar.setAlignment(Pos.CENTER);
+
         arkaPlan = new Rectangle(40,90);
         arkaPlan.setFill(Color.TRANSPARENT);
         arkaPlan.setStroke(Color.ORANGE);
@@ -40,19 +41,28 @@ public class TrafficLightsDemo extends StackPane {
     // Kırmızı Işığı aktif eden fonksiyon
     public void turnOnRed(){
         kirmizi.setFill(Color.RED);
+        kirmizi.setStroke(Color.BLACK);
         yesil.setFill(Color.GRAY);
+        yesil.setStroke(Color.BLACK);
         sari.setFill(Color.GRAY);
+        sari.setStroke(Color.BLACK);
     }
     // Sarı Işığı aktif eden fonksiyon
     public void turnOnYellow(){
         kirmizi.setFill(Color.GRAY);
+        kirmizi.setStroke(Color.BLACK);
         yesil.setFill(Color.GRAY);
+        yesil.setStroke(Color.BLACK);
         sari.setFill(Color.YELLOW);
+        sari.setStroke(Color.BLACK);
     }
     //Yeşil ışığı aktif eden fonksiyon
     public void turnOnGreen(){
         kirmizi.setFill(Color.GRAY);
+        kirmizi.setStroke(Color.BLACK);
         yesil.setFill(Color.GREEN);
+        yesil.setStroke(Color.BLACK);
         sari.setFill(Color.GRAY);
+        sari.setStroke(Color.BLACK);
     }
 }

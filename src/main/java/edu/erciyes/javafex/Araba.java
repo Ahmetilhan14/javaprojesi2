@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class Araba implements Vehicle{
+public class Araba extends Vehicle{
     final private String name = "Araba";
     final private double size = 12.0;
 
@@ -21,9 +21,11 @@ public class Araba implements Vehicle{
     }
 
     public void ciz(Pane root, double x, double y, String direction) {
+        if (imageView != null && root.getChildren().contains(imageView)) {
+            root.getChildren().remove(imageView);
+        }
         Image arabaImage = new Image(getClass().getResource("/car.png").toExternalForm());
-        ImageView imageView = new ImageView(arabaImage);
-
+        imageView = new ImageView(arabaImage);
         switch (direction.toLowerCase()) {
             case "north":
                 imageView.setRotate(90);
@@ -45,11 +47,13 @@ public class Araba implements Vehicle{
                 break;
         }
 
+
+        imageView.setPreserveRatio(true);
         imageView.setFitWidth(30);
         imageView.setFitHeight(40);
 
         imageView.setLayoutX(x);
         imageView.setLayoutY(y);
-
+        root.getChildren().add(imageView);
     }
 }

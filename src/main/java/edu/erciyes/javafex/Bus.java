@@ -3,7 +3,7 @@ package edu.erciyes.javafex;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-public class Bus implements Vehicle{
+public class Bus extends Vehicle{
     private String name = "Otobüs";
     private double size = 18;
 
@@ -19,8 +19,11 @@ public class Bus implements Vehicle{
 
     @Override
     public void ciz(Pane root, double x, double y, String direction) {
+        if (imageView != null && root.getChildren().contains(imageView)) {
+            root.getChildren().remove(imageView);
+        }
         Image arabaImage = new Image(getClass().getResource("/bus.png").toExternalForm());
-        ImageView imageView = new ImageView(arabaImage);
+        imageView = new ImageView(arabaImage);
 
 
         switch (direction.toLowerCase()) {
@@ -45,9 +48,9 @@ public class Bus implements Vehicle{
                 y += 35;
                 break;
         }
-
+        imageView.setPreserveRatio(true);
         imageView.setFitWidth(80);
-        imageView.setFitHeight(15);
+        imageView.setFitHeight(40);
         imageView.setLayoutX(x);
         imageView.setLayoutY(y);
         root.getChildren().add(imageView);
