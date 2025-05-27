@@ -27,27 +27,6 @@ public class HelloApplication extends Application {
 
 
 
-       /* stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
-
-
-        // Her yön için oluşturulacak nesnelerin tanımlanması
-        TrafficLightsDemo northLights=createNorthLight();
-        TrafficLightsDemo eastLights=createEastLight();
-        TrafficLightsDemo southLights=createSouthtLight();
-        TrafficLightsDemo westLights=createWestLight();
-
-        // ışıkların pozisyonlarının ayarlanması
-        northLights.setLayoutX(475); northLights.setLayoutY(100);
-        southLights.setLayoutX(475); southLights.setLayoutY(600);
-        eastLights.setLayoutX(775);  eastLights.setLayoutY(375);
-        westLights.setLayoutX(175);   westLights.setLayoutY(375);
-
-
-
-
-        ((Pane) root).getChildren().addAll(northLights, eastLights, southLights, westLights);*/
 
         stage.setTitle("Trafik Işıkları");
         stage.setScene(scene);

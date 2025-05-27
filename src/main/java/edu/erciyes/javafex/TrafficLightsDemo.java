@@ -37,7 +37,10 @@ public class TrafficLightsDemo extends StackPane {
         this.getChildren().addAll(isiklar,arkaPlan);
     }
 
-
+    public void setPosition(double x, double y) {
+        this.setLayoutX(x);
+        this.setLayoutY(y);
+    }
     // Kırmızı Işığı aktif eden fonksiyon
     public void turnOnRed(){
         kirmizi.setFill(Color.RED);

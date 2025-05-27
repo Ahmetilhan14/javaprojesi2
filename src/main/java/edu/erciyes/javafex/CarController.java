@@ -60,12 +60,16 @@ public class CarController {
         attachComboBoxListeners();
 
         northLights = new TrafficLightsDemo();
+        northLights.setPosition(-150,150);
         northPane.getChildren().add(northLights);
         southLights = new TrafficLightsDemo();
+        southLights.setPosition(100,0);
         southPane.getChildren().add(southLights);
         eastLights = new TrafficLightsDemo();
+        eastLights.setPosition(30,-170);
         eastPane.getChildren().add(eastLights);
         westLights = new TrafficLightsDemo();
+        westLights.setPosition(260,80);
         westPane.getChildren().add(westLights);
 
         startTrafficLoop();
