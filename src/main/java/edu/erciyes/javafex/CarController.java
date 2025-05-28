@@ -154,13 +154,14 @@ public class CarController {
             directions[rand.nextInt(4)]++;
         }
         vehicleManager.selectVehicle(directions[0], "north");
+        vehicleManager.selectVehicle(directions[3], "east");
         vehicleManager.selectVehicle(directions[1], "south");
         vehicleManager.selectVehicle(directions[2], "west");
-        vehicleManager.selectVehicle(directions[3], "east");
+
         System.out.println("bitti");
     }
     public void start(MouseEvent mouseEvent) {
-        trafficLightManager.startTrafficLoop(5,5,5,5);
+        trafficLightManager.startTrafficLoop(3,3,3,3);
         Timeline timeline=new Timeline(new KeyFrame(Duration.seconds(1),new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
