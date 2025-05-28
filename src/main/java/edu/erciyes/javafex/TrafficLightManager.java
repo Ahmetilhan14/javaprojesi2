@@ -6,8 +6,8 @@ public class TrafficLightManager {
     private static final double YELLOW_DURATION = 1.0;
 
     public final TrafficLightsDemo northLights;
-    public final TrafficLightsDemo southLights;
     public final TrafficLightsDemo eastLights;
+    public final TrafficLightsDemo southLights;
     public final TrafficLightsDemo westLights;
 
     public TrafficLightManager(TrafficLightsDemo north, TrafficLightsDemo east, TrafficLightsDemo south, TrafficLightsDemo west) {
