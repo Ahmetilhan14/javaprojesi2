@@ -25,15 +25,11 @@ public class HelloApplication extends Application {
 
         Scene scene = new Scene(root, 800, 650);
 
-
-
-
         stage.setTitle("Trafik Işıkları");
         stage.setScene(scene);
         stage.show();
 
     }
-
     // Batı Işıklarını üreten fonksiyon
     private TrafficLightsDemo createWestLight() {
         return new TrafficLightsDemo();

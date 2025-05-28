@@ -18,6 +18,7 @@ public class TrafficLightsDemo extends StackPane {
    // Kırmızı sarı ve yeşil ışıklarla arka plandaki çerçevenin tanımlanması
     private Circle kirmizi,yesil,sari;
     private Rectangle arkaPlan;
+    private String currentColor="red";
 
 
     // Trafik Işıklarının tanımlandığı özelliklerinin girildiği contructor
@@ -49,6 +50,7 @@ public class TrafficLightsDemo extends StackPane {
         yesil.setStroke(Color.BLACK);
         sari.setFill(Color.GRAY);
         sari.setStroke(Color.BLACK);
+        currentColor="red";
     }
     // Sarı Işığı aktif eden fonksiyon
     public void turnOnYellow(){
@@ -58,6 +60,7 @@ public class TrafficLightsDemo extends StackPane {
         yesil.setStroke(Color.BLACK);
         sari.setFill(Color.YELLOW);
         sari.setStroke(Color.BLACK);
+        currentColor="yellow";
     }
     //Yeşil ışığı aktif eden fonksiyon
     public void turnOnGreen(){
@@ -67,5 +70,9 @@ public class TrafficLightsDemo extends StackPane {
         yesil.setStroke(Color.BLACK);
         sari.setFill(Color.GRAY);
         sari.setStroke(Color.BLACK);
+        currentColor="green";
+    }
+    public boolean isGreen(){
+        return currentColor.equals("green");
     }
 }
