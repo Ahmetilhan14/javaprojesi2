@@ -72,61 +72,55 @@ public class CarController {
         westLights.setPosition(260,80);
         westPane.getChildren().add(westLights);
 
-        startTrafficLoop();
+
     }
-    private void startTrafficLoop() {
+
+    private static final double YELLOW_DURATION=1.0;
+    private void startTrafficLoop(double northGreenDuration, double eastGreenDuration, double southGreenDuration, double westGreenDuration) {
         Timeline timeline = new Timeline();
 
-        // Başta hepsi kırmızı (0.saniye)
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(0), e -> {
-            allRed();
-        }));
+        // Toplam bir tur süresi = tüm yeşil + sarı sürelerinin toplamı
+        double totalCycleTime =
+                northGreenDuration + YELLOW_DURATION +
+                        eastGreenDuration + YELLOW_DURATION +
+                        southGreenDuration + YELLOW_DURATION +
+                        westGreenDuration + YELLOW_DURATION;
 
-        // Kuzey sarı (2. saniye)
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(2), e -> {
-            northLights.turnOnYellow();
-        }));
+        double currentTime = 0;
 
-        // Kuzey yeşil (3. saniye)
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(3), e -> {
-            northLights.turnOnGreen();
-        }));
+        // Başta tümü kırmızı
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> allRed()));
 
-        // Kuzey tekrar kırmızı (13. saniye), doğu sarı
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(13), e -> {
-            northLights.turnOnRed();
-            eastLights.turnOnYellow();
-        }));
+        // Kuzey: Sarı ve Yeşil
+        currentTime += 0; // Başlangıç
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> northLights.turnOnRed()));
+        currentTime += YELLOW_DURATION;
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> northLights.turnOnYellow()));
+        currentTime += 1; // 1 sn sarı süresi (sabit)
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> northLights.turnOnGreen()));
+        currentTime += northGreenDuration;
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> northLights.turnOnRed()));
 
-        // Doğu yeşil (14. saniye)
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(14), e -> {
-            eastLights.turnOnGreen();
-        }));
+        // Doğu: Sarı ve Yeşil
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> eastLights.turnOnYellow()));
+        currentTime += YELLOW_DURATION;
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> eastLights.turnOnGreen()));
+        currentTime += eastGreenDuration;
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> eastLights.turnOnRed()));
 
-        // Doğu tekrar kırmızı (24. saniye), güney sarı
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(24), e -> {
-            eastLights.turnOnRed();
-            southLights.turnOnYellow();
-        }));
+        // Güney: Sarı ve Yeşil
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> southLights.turnOnYellow()));
+        currentTime += YELLOW_DURATION;
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> southLights.turnOnGreen()));
+        currentTime += southGreenDuration;
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> southLights.turnOnRed()));
 
-        // Güney yeşil (25. saniye)
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(25), e -> {
-            southLights.turnOnGreen();
-        }));
-
-        // Güney kırmızı, batı sarı (35. saniye)
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(35), e -> {
-            southLights.turnOnRed();
-            westLights.turnOnYellow();
-        }));
-
-        // Batı yeşil (36. saniye)
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(36), e -> {
-            westLights.turnOnGreen();
-        }));
-
-        // Döngüyü tekrar başlat (46. saniye)
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(46), e -> {
+        // Batı: Sarı ve Yeşil
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> westLights.turnOnYellow()));
+        currentTime += YELLOW_DURATION;
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> westLights.turnOnGreen()));
+        currentTime += westGreenDuration;
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(currentTime), e -> {
             westLights.turnOnRed();
             allRed();
         }));
@@ -200,7 +194,7 @@ public class CarController {
 
     @FXML
     public void secHandler(MouseEvent mouseEvent) {
-       // clearPanesAndLists();
+        // clearPanesAndLists();
 
         selectVehicle(getComboValue(NorthVehicleCount), "north");
         selectVehicle(getComboValue(SouthVehicleCount), "south");
@@ -310,6 +304,7 @@ public class CarController {
     }
 
     public void start(MouseEvent mouseEvent) {
+        startTrafficLoop(6, 8, 7, 5);
         move.forward(araclarNorth);
         move.forward(araclarEast);
         move.forward(araclarWest);
@@ -325,9 +320,5 @@ public class CarController {
     public void devamet(MouseEvent mouseEvent) {
         move.devamEt(); // Kaldığı yerden devam
     }
-
-
-
-
 }
 

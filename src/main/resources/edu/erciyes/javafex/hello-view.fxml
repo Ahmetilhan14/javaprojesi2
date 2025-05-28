@@ -77,40 +77,40 @@
             <HBox spacing="20" alignment="CENTER">
                 <!-- Batı Yönü-->
                 <VBox prefHeight="210" prefWidth="300" alignment="BOTTOM_RIGHT">
-                    <VBox style="-fx-background-color: white; -fx-border-width:  2;  -fx-border: gray;">
+                    <VBox style="-fx-background-color: white; -fx-border-width: 2; -fx-border-color: gray;">
                         <Pane fx:id="westPane2" prefHeight="100" prefWidth="300">
                             <Line startX="0" startY="50" endX="300" endY="50"
                                   stroke="gray" strokeWidth="2"
                                   strokeDashArray="10,10"/>
                         </Pane>
-                        <Line startX="0" startY="0" endX="300" endY="0" strokeWidth="2"/>
+                        <Line startX="0" startY="0" endX="300" endY="0" stroke="gray" strokeWidth="2"/>
                         <Pane fx:id="westPane" prefHeight="100" prefWidth="300">
                             <Pane fx:id="westPaneLeft" prefHeight="50" prefWidth="300"/>
                             <Line startX="0" startY="50" endX="300" endY="50"
                                   stroke="gray" strokeWidth="2"
                                   strokeDashArray="10,10"/>
-                            <Pane fx:id="westPaneRight" prefWidth="300" prefHeight="50"/>
+                            <Pane fx:id="westPaneRight" prefHeight="50" prefWidth="300"/>
                         </Pane>
                     </VBox>
                 </VBox>
 
                 <Pane prefHeight="110" prefWidth="250"/>
 
-                <!--Doğu Yönü-->
-                <VBox alignment="TOP_LEFT" prefWidth="300" prefHeight="210">
-                    <VBox style="-fx-background-color: white; -fx-border-width: 2;  -fx-border: gray;">
+                <!-- Doğu Yönü -->
+                <VBox alignment="BOTTOM_RIGHT" prefHeight="210" prefWidth="300">
+                    <VBox style="-fx-background-color: white; -fx-border-width: 2; -fx-border-color: gray;">
                         <Pane fx:id="eastPane2" prefHeight="100" prefWidth="300">
                             <Line startX="0" startY="50" endX="300" endY="50"
                                   stroke="gray" strokeWidth="2"
                                   strokeDashArray="10,10"/>
                         </Pane>
-                        <Line startX="0" startY="0" endX="300" endY="0" strokeWidth="2"/>
+                        <Line startX="0" startY="0" endX="300" endY="0" stroke="gray" strokeWidth="2"/>
                         <Pane fx:id="eastPane" prefHeight="100" prefWidth="300">
                             <Pane fx:id="eastPaneLeft" prefHeight="50" prefWidth="300"/>
                             <Line startX="0" startY="50" endX="300" endY="50"
                                   stroke="gray" strokeWidth="2"
                                   strokeDashArray="10,10"/>
-                            <Pane fx:id="eastPaneRight" prefWidth="300" prefHeight="50"/>
+                            <Pane fx:id="eastPaneRight" prefHeight="50" prefWidth="300"/>
                         </Pane>
                     </VBox>
                 </VBox>
