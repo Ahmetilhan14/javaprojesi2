@@ -1,4 +1,5 @@
 package edu.erciyes.javafex;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -37,7 +38,8 @@ public class CarController {
     private Group carsGroup;
     private TrafficLightManager trafficLightManager;
     private VehicleManager vehicleManager;
-
+    private Timeline timeline;
+    private Timeline vehicleSpawnTimer;
 
     private boolean isUpdating = false;
     private boolean isUpdating2 = false;
@@ -46,9 +48,9 @@ public class CarController {
     public List<Vehicle> araclarSouth = new ArrayList<>();
     public List<Vehicle> araclarWest = new ArrayList<>();
     public List<Vehicle> araclarEast = new ArrayList<>();
-
     @FXML
     public void initialize() {
+
         setItems(NorthVehicleCount, 20);
         setItems(SouthVehicleCount, 20);
         setItems(EastVehicleCount, 20);
@@ -58,6 +60,8 @@ public class CarController {
         WestVehicleCount.setValue(3);
         EastVehicleCount.setValue(3);
         SouthVehicleCount.setValue(3);
+        vehicleManager = new VehicleManager(northPane,southPane,eastPane,westPane);
+
 
         attachComboBoxListeners();
 
@@ -74,7 +78,7 @@ public class CarController {
         westLights.setPosition(260,80);
         westPane.getChildren().add(westLights);
         trafficLightManager = new TrafficLightManager(northLights, southLights, eastLights, westLights);
-        vehicleManager = new VehicleManager(northPane,southPane,eastPane,westPane);
+
     }
     private void attachComboBoxListeners() {
         NorthVehicleCount.setOnAction(e -> { if (!isUpdating2) changeHandler(); });
@@ -161,12 +165,15 @@ public class CarController {
         System.out.println("bitti");
     }
     public void start(MouseEvent mouseEvent) {
-        trafficLightManager.startTrafficLoop(3,3,3,3);
-        Timeline timeline=new Timeline(new KeyFrame(Duration.seconds(1),new EventHandler<ActionEvent>() {
+        trafficLightManager.startTrafficLoop(29,29,29,29);
+
+
+        timeline=new Timeline(new KeyFrame(Duration.seconds(1),new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if(northLights.isGreen()){
                     move.forward(vehicleManager.araclarNorth);
+                    //vehicleManager.selectVehicle(1, "north");
                 }
                 if(southLights.isGreen()){
                     move.forward(vehicleManager.araclarSouth);
@@ -182,10 +189,34 @@ public class CarController {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
+        vehicleSpawnTimer=new Timeline(new KeyFrame(Duration.seconds(2),e->{
+            if(northLights.isGreen()){
+                vehicleManager.selectVehicle(1,"north");
+            }
+            if(southLights.isGreen()){
+                vehicleManager.selectVehicle(1,"south");
+            }
+            if(eastLights.isGreen()){
+                vehicleManager.selectVehicle(1,"east");
+            }
+            if(westLights.isGreen()){
+                vehicleManager.selectVehicle(1,"west");
+            }
+        }));
+
+        vehicleSpawnTimer.setCycleCount(Timeline.INDEFINITE);
+        vehicleSpawnTimer.play();
+
     }
     @FXML
     public void durdur(MouseEvent mouseEvent) {
-        move.durdur(); // Animasyonları durdur
+        //move.durdur(); // Animasyonları durdur
+        if (timeline != null) {
+            timeline.stop();
+        }
+        if (vehicleSpawnTimer != null) {
+            vehicleSpawnTimer.stop();
+        }
     }
     @FXML
     public void devamet(MouseEvent mouseEvent) {
